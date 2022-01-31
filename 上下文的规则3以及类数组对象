@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var arr = ["A","B","C",function () {
+            // console.log(this[0]);
+        // }];
+        // arr[3]();
+        // 理解步骤： 18-20行，（1）这一个匿名函数，在该函数中，看到arguments[3]() 格式符合 “数组[下标]（）”这个规则， 该
+        //规则规定类数组对象枚举出函数进行调用，上下文是这个类数组对象。
+        //（2）21行是fun函数的调用，里面有四个值，类似于argument["A","B","C", function() {console.log(this[1]]。
+        //（3）此处上下文就是这个argument这个类数组， arguments类数组对象的第三项仍旧是一个函数，该函数传回第21行那个函数
+        //的执行，选择自己的上下文，也就是第一项：“B”。
+
+        function fun() {
+            arguments[3]();
+        }
+        fun("A","B","C", function() {
+            console.log(this[1]);
+        });
+
+
+    </script>
+</body>
+</html>
